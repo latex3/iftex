@@ -1,0 +1,147 @@
+%% iftex TeX engine tests
+%% LaTeX3 Project
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version.
+%%
+%% Using ideas from:
+%%
+%% ifxetex Will Robertson
+%% iftex  Persian TeX Group / Vafa Khalighi
+%% ifluatex ifvtex Heiko Oberdiek
+%% ifptex Takayuki YATO
+
+
+\csname IFTEX\string @loaded\endcsname
+\expandafter\let\csname IFTEX\string @loaded\endcsname\endinput
+
+
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
+  \ProvidesPackage{iftex}
+    [2019/10/24 v1.0a TeX engine tests]
+\fi
+
+\expandafter\chardef\csname IFTEX@at@catcode\endcsname\catcode64
+\catcode 64 11
+
+% message format used in several if*tex existing packages
+% Perhaps it ought to stop the job? \(@@)end ?
+% could work harder to hide context line:
+% \IFTEX@Require ...*******************************}
+\def\IFTEX@Require#1#2#3{%
+  #1\expandafter\@gobble
+  #3%
+  {%
+      \newlinechar=10\relax
+      \errorcontextlines=1\relax
+      \errmessage{^^J
+      ********************************************^^J
+      * #2 is required to compile this document.^^J
+      * Sorry!^^J
+      ********************************************}%
+    }%
+  }
+
+\ifx\protected\@undefined
+  \let\IFTEX@protected\relax
+\else
+  \let\IFTEX@protected\protected
+\fi
+
+
+\IFTEX@protected\def\RequireeTeX{\IFTEX@Require\ifetex{eTeX}\fi}
+\IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifpdftex{PDFTeX}\fi}
+\IFTEX@protected\def\RequireXeTeX{\IFTEX@Require\ifxetex{XeTeX}\fi}
+\IFTEX@protected\def\RequireLuaTeX{\IFTEX@Require\ifluatex{LuaTeX}\fi}
+\IFTEX@protected\def\RequireLuahbTeX{\IFTEX@Require\ifluatex{LuahbTeX}\fi}
+\IFTEX@protected\def\RequirepTeX{\IFTEX@Require\ifptex{pTeX}\fi}
+\IFTEX@protected\def\RequireupTeX{\IFTEX@Require\ifuptex{upTeX}\fi}
+\IFTEX@protected\def\RequirepTeXng{\IFTEX@Require\ifptexng{p-TeXng}\fi}
+\IFTEX@protected\def\RequireVTeX{\IFTEX@Require\ifuptex{VTeX}\fi}
+\IFTEX@protected\def\RequireAlephTeX{\IFTEX@Require\ifalephtex{Aleph}\fi}% alephtex as aleph name too generic
+
+
+% As a matter of policy over-write any existing \if*tex macro and set
+% by the tests here.
+
+% etex (should always be true in latex based formats)
+\newif\ifetex
+\ifx\numexpr\@undefined
+\else
+  \etextrue
+\fi
+
+% pdftex (including in dvi mode)
+\newif\ifpdftex
+\ifx\pdftexversion\@undefined
+\else
+  \pdftextrue
+\fi
+
+% xetex
+\newif\ifxetex
+\ifx\XeTeXrevision\@undefined
+\else
+  \xetextrue
+\fi
+
+% luatex (including luahbtex)
+\newif\ifluatex
+\ifx\directlua\@undefined
+\else
+  \luatextrue
+\fi
+
+% luahbtex
+\newif\ifluahbtex
+\ifx\directlua\@undefined
+\else
+  \directlua{\detokenize{
+   if(status.luatex_engine=="luahbtex") then
+     tex.print("\\luahbtextrue")
+   end
+  }}
+\fi
+
+% ptex (including all variants)
+\newif\ifptex
+\ifx\kanjiskip\@undefined
+\else
+  \ptextrue
+\fi
+
+% uptex (including euptex) (but not older uptex without this command)
+\newif\ifuptex
+\ifx\uptexversion\@undefined
+\else
+  \uptextrue
+\fi
+
+% ptex-ng
+\newif\ifptexng % rename to \ifpngtex to keep the iffootex name convention?
+\ifx\ngbaner\@undefined
+\else
+  \ifptexngrue
+\fi
+
+% vtex
+\newif\ifvtex
+\ifx\VTeXversion\@undefined
+\else
+  \vtextrue
+\fi
+
+% aleph
+\newif\ifalephtex
+\ifuptex\else
+\ifx\omathchardef\@undefined
+\else
+  \alephtextrue
+\fi
+\fi
+
+
+\catcode64 \IFTEX@at@catcode
