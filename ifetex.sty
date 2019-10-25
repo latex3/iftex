@@ -1,0 +1,8 @@
+% Compatibility stub package for ifetex
+
+\ifx\RequirePackage\undefined
+  \input iftex.sty
+\else
+  \RequirePackage{iftex}
+  \newcommand*\NeedsETeX[1][]{\RequireeTeX}
+\fi
