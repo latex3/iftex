@@ -121,6 +121,7 @@
 \else
   \IFTEX@let{ptex}{true}
 \fi
+\IFTEX@let{pTeX}{ptex}
 
 % uptex (including euptex)
 \ifx\enablecjktoken \@undefined
@@ -128,6 +129,7 @@
 \else
   \IFTEX@let{uptex}{true}
 \fi
+\IFTEX@let{upTeX}{uptex}
 
 % ptex-ng
 \ifx\ngbanner\@undefined
@@ -135,6 +137,7 @@
 \else
   \IFTEX@let{ptexng}{true}
 \fi
+\IFTEX@let{pTeXng}{ptexng}
 
 % vtex
 \ifx\VTeXversion\@undefined
