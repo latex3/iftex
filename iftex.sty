@@ -93,11 +93,12 @@
 \fi
 
 % luahbtex
+% use luaharfbuzz test rather than status.luatex_engine=="luahbtex" for issue #2
 \newif\ifluahbtex
 \ifx\directlua\@undefined
 \else
   \directlua{\detokenize{
-   if(status.luatex_engine=="luahbtex") then
+   if(pcall(require, 'luaharfbuzz')) then
      tex.print("\\luahbtextrue")
    end
   }}
