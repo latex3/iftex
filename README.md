@@ -8,6 +8,7 @@ https://github.com/bidi-tex/iftex/issues/1
 
 This is a merger and simplification of several packages
 
+ * ifetex Martin Scharrer
  * ifxetex Will Robertson
  * iftex  Persian TeX Group / Vafa Khalighi
  * ifluatex, ifvtex Heiko Oberdiek
