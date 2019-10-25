@@ -17,10 +17,10 @@
 \def\test#1{\immediate\write20{\string#1 = \meaning#1}}
 
 \test\ifetex
-\test\ifpdftex
-\test\ifxetex
-\test\ifluatex
-\test\ifluahbtex
+\test\ifpdftex    \test\ifPDFTeX
+\test\ifxetex     \test\ifXeTeX
+\test\ifluatex    \test\ifLuaTeX
+\test\ifluahbtex  \test\ifLuaHBTeX
 \test\ifptex
 \test\ifuptex
 \test\ifptexng

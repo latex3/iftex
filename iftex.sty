@@ -50,7 +50,7 @@
 
 
 \IFTEX@protected\def\RequireeTeX{\IFTEX@Require\ifetex{eTeX}\fi}
-\IFTEX@protected\def\RequirepdfTeX{\IFTEX@Require\ifpdftex{pdfTeX}\fi}
+\IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifpdftex{pdfTeX}\fi}
 \IFTEX@protected\def\RequireXeTeX{\IFTEX@Require\ifxetex{XeTeX}\fi}
 \IFTEX@protected\def\RequireLuaTeX{\IFTEX@Require\ifluatex{LuaTeX}\fi}
 \IFTEX@protected\def\RequireLuaHBTeX{\IFTEX@Require\ifluahbtex{LuaHBTeX}\fi}
@@ -81,6 +81,7 @@
 \else
   \IFTEX@let{pdftex}{true}
 \fi
+\IFTEX@let{PDFTeX}{pdftex}
 
 % xetex
 \ifx\XeTeXrevision\@undefined
@@ -88,6 +89,8 @@
 \else
   \IFTEX@let{xetex}{true}
 \fi
+\IFTEX@let{XeTeX}{xetex}
+
 
 % luatex (including luahbtex)
 \ifx\directlua\@undefined
@@ -95,6 +98,7 @@
 \else
   \IFTEX@let{luatex}{true}
 \fi
+\IFTEX@let{LuaTeX}{luatex}
 
 % luahbtex
 % use luaharfbuzz test rather than status.luatex_engine=="luahbtex" for issue #2
@@ -107,6 +111,8 @@
    end
   }}
 \fi
+\IFTEX@let{LuaHBTeX}{luahbtex}
+
 
 % ptex (including all variants)
 \ifx\kanjiskip\@undefined
