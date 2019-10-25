@@ -64,80 +64,84 @@
 % As a matter of policy over-write any existing \if*tex macro and set
 % by the tests here.
 
+\def\IFTEX@let#1#2{%
+  \expandafter\let\csname if#1\expandafter\endcsname
+  \csname if#2\endcsname}
+
 % etex (should always be true in latex based formats)
-\newif\ifetex
 \ifx\numexpr\@undefined
+  \IFTEX@let{etex}{false}
 \else
-  \etextrue
+  \IFTEX@let{etex}{true}
 \fi
 
 % pdftex (including in dvi mode)
-\newif\ifpdftex
 \ifx\pdftexversion\@undefined
+  \IFTEX@let{pdftex}{false}
 \else
-  \pdftextrue
+  \IFTEX@let{pdftex}{true}
 \fi
 
 % xetex
-\newif\ifxetex
 \ifx\XeTeXrevision\@undefined
+  \IFTEX@let{xetex}{false}
 \else
-  \xetextrue
+  \IFTEX@let{xetex}{true}
 \fi
 
 % luatex (including luahbtex)
-\newif\ifluatex
 \ifx\directlua\@undefined
+  \IFTEX@let{luatex}{false}
 \else
-  \luatextrue
+  \IFTEX@let{luatex}{true}
 \fi
 
 % luahbtex
 % use luaharfbuzz test rather than status.luatex_engine=="luahbtex" for issue #2
-\newif\ifluahbtex
+\IFTEX@let{luahbtex}{false}
 \ifx\directlua\@undefined
 \else
   \directlua{\detokenize{
    if(pcall(require, 'luaharfbuzz')) then
-     tex.print("\\luahbtextrue")
+     tex.print("\\let\\ifluahbtex\\iftrue ")
    end
   }}
 \fi
 
 % ptex (including all variants)
-\newif\ifptex
 \ifx\kanjiskip\@undefined
+  \IFTEX@let{ptex}{false}
 \else
-  \ptextrue
+  \IFTEX@let{ptex}{true}
 \fi
 
 % uptex (including euptex)
-\newif\ifuptex
 \ifx\enablecjktoken \@undefined
+  \IFTEX@let{uptex}{false}
 \else
-  \uptextrue
+  \IFTEX@let{uptex}{true}
 \fi
 
 % ptex-ng
-\newif\ifptexng % rename to \ifpngtex to keep the iffootex name convention?
 \ifx\ngbanner\@undefined
+  \IFTEX@let{ptexng}{false}
 \else
-  \ifptexngrue
+  \IFTEX@let{ptexng}{true}
 \fi
 
 % vtex
-\newif\ifvtex
 \ifx\VTeXversion\@undefined
+  \IFTEX@let{vtex}{false}
 \else
-  \vtextrue
+  \IFTEX@let{vtex}{true}
 \fi
 
 % aleph
-\newif\ifalephtex
+\IFTEX@let{alephtex}{false}
 \ifptex\else
 \ifx\omathchardef\@undefined
 \else
-  \alephtextrue
+  \IFTEX@let{alephtex}{true}
 \fi
 \fi
 
