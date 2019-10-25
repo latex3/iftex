@@ -1,0 +1,11 @@
+% plain tex ifxetex compatibility
+
+\input ifxetex.sty
+
+\ifxetex
+\immediate\write20{XeTeX}
+\else
+\immediate\write20{Not XeTeX}
+\fi
+
+\bye
