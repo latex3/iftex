@@ -28,22 +28,19 @@
 \catcode 64 11
 
 % message format used in several if*tex existing packages
-% Perhaps it ought to stop the job? \(@@)end ?
-% could work harder to hide context line:
-% \IFTEX@Require ...*******************************}
+% Modified here to do a hard stop and not show any error context lines
 \def\IFTEX@Require#1#2#3{%
-  #1\expandafter\@gobble
-  #3%
-  {%
+  #1\else
       \newlinechar=10\relax
-      \errorcontextlines=1\relax
-      \errmessage{^^J
+      \errorcontextlines=-1\relax
+      \immediate\write20{^^J
       ********************************************^^J
       * #2 is required to compile this document.^^J
       * Sorry!^^J
       ********************************************}%
-    }%
-  }
+    \batchmode\read -1 to \@tempa
+    #3%
+}
 
 \ifx\protected\@undefined
   \let\IFTEX@protected\relax
