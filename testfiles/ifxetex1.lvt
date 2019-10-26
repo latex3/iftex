@@ -1,7 +1,8 @@
 % latex ifxetex compatibility
-
+\input regression-test
 \RequirePackage{ifxetex}
 
+\START
 \ifxetex
 \typeout{XeTeX}
 \else

@@ -1,6 +1,8 @@
+\input regression-test
 
 \input iftex.sty
 
+\START
 \def\test#1{\immediate\write20{\string#1 = \meaning#1}}
 
 \test\ifetex      \test\ifeTeX
