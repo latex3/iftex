@@ -1,42 +1,66 @@
 # iftex
 
-## Experiments in tex engine detection
+## TeX Engine Detection
 
-Based on a suggestion at
+This iftex package provides a suite of commands for detecting
+different TeX variants.
+
+For each supported engine, tests are provided of the form
+
+ \ifpdftex which is true if PDFTeX is in use and \RequirePDFTeX
+ which stops the run with an error messag eif PDFTeX is not being used.
+
+The package (which works with plain TeX as well as LaTeX) has tests
+for:
+
+eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph
+
+
+In addition, an \ifpdf test is provided to test the PDF or DVI output
+mode. This is essentially the same as the existing test in the ifpdf
+package.
+
+## Compatibility Packages
+
+In addition to the main iftex.sty package, small wrapper packages are
+provided
+
+ifetex.sty  ifluatex.sty  ifvtex.sty  ifxetex.sty
+
+These include iftex and in some cases emulate some additional
+commands to allow these packages to replace the original packages in TeX
+distributions. It is recommended that new documents do not use these
+packages, but instead load iftex.sty directly.
+
+This package may be used on any format (it may be loaded into initex)
+it does not assume LaTeX.
+
+
+----
+
+This is a merger and simplification of several packages
+Based on a suggestion of Norbert Preining
 
 https://github.com/bidi-tex/iftex/issues/1
 
-This is a merger and simplification of several packages
 
- * ifetex Martin Scharrer
- * ifxetex Will Robertson
- * iftex  Persian TeX Group / Vafa Khalighi
- * ifluatex, ifvtex Heiko Oberdiek
- * ifptex Takayuki YATO
+ * ifetex: Martin Scharrer
+ * ifxetex: Will Robertson
+ * iftex:  Persian TeX Group / Vafa Khalighi
+ * ifluatex, ifvtex: Heiko Oberdiek
+ * ifptex: Takayuki Yato
+ * ifpdf: Heiko Oberdiek and LaTeX3 Project
 
-
-The combined set of existing packages
-
-ifetex.sty    ifptex.sty  ifuptex.sty  ifxetex.sty
-ifluatex.sty  iftex.sty   ifvtex.sty   ifxptex.sty
-
-
-Totals over 12 hundred lines, the present package is around 150 so
-necessarily drops some features. If required they could be put back...
-
-Currently it only defines lowercase names \ifxetex
-some of the packages define mixed case names, or both styles, \ifXeTeX etc.
-
-I would rather just define one name convention, but if this package
-retains the iftex name, it will probably need to define at least some
-mixed case names for ccompatibility.
 
 The existing  if(u)ptex packages do far more extensive testing to
-distinguish different variants which I have not copied here. My
-thought was that a generic package like this one would only need to
-provide a coarser test. A package specifically for Japanese texts may
-need the finer grained tests of the ifptex package.
+distinguish different variants which are not copied here.
 
-Currently the package only tests the engine, it does not (for example)
-test the pdf or dvi output mode. (So does not provide the \ifpdf test.)
+A document specifically for Japanese texts may need the finer grained
+tests of the ifptex package which has tests for particular versions
+of the pTeX (Japanese TeX) variant in use, and for the mode that is
+active.
+
+This generic package only has coarser tests for the tex variant in
+use, so is sufficient for example to distinguish upTeX from pTeX, and
+to distinguish both of those from LuaTeX.
 
