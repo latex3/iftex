@@ -59,14 +59,8 @@ The package can be loaded in the usual way both in Plain \TeX\ and \LaTeX.
 \subsection{Loading The Package in ini\TeX}
 The package assumes very little existing macros and may be loaded
 during format setup in a format without the plain \TeX\ or \LaTeX\
-format being loaded. From the initial ini\TeX\ setup the package may
-be loaded as for plain \TeX\ as long as the catcodes for \{, \}, \#
-and @ have been set to 1, 2 , 6 and 11 respectively, and that, for
-Lua\TeX, \verb|\detokenize| as been enabled via\\
-\verb|tex.enableprimitives("", {"detokenize"}|.
-\begin{verbatim}
-\usepackage{iftex}
-\end{verbatim}
+format being loaded. From an initial ini\TeX\ setup the package may
+be loaded as for plain \TeX.
 
 \section{Engine Test Conditionals}
 All the conditionals defined here are used in the same way
