@@ -127,8 +127,8 @@
 \ifx\directlua\@undefined
 \else
 
-% make sure \deokenize is available,
-% but avoid defining it if not already defined/
+% make sure \detokenize is available,
+% but avoid defining it if not already defined.
   \let\IFTEX@temp\detokenize
   \directlua{tex.enableprimitives("", {"detokenize"})}
 
