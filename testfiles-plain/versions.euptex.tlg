@@ -1,4 +1,5 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 etex: [2.6pt]
-pdftex: [1.4pt] (.20)
+ptex: [3.8pt] (.2)
+uptex: [1.25pt]

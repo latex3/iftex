@@ -1,4 +1,10 @@
+\ifx\numexpr\undefined
+\def\START{\immediate\write-1{START-TEST-LOG}}
+\let\zzend\end
+\def\end{\immediate\write-1{END-TEST-LOG}\zzend}
+\else
 \input regression-test
+\fi
 
 \input iftex.sty
 

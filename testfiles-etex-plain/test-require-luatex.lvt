@@ -1,6 +1,8 @@
+\input regression-test
 
 \input iftex.sty
 
+\START
 
 \RequireLuaTeX
 

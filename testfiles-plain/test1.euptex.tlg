@@ -2,18 +2,18 @@ This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 \ifetex = \iftrue
 \ifeTeX = \iftrue
-\ifpdftex = \iftrue
-\ifPDFTeX = \iftrue
+\ifpdftex = \iffalse
+\ifPDFTeX = \iffalse
 \ifxetex = \iffalse
 \ifXeTeX = \iffalse
 \ifluatex = \iffalse
 \ifLuaTeX = \iffalse
 \ifluahbtex = \iffalse
 \ifLuaHBTeX = \iffalse
-\ifptex = \iffalse
-\ifpTeX = \iffalse
-\ifuptex = \iffalse
-\ifupTeX = \iffalse
+\ifptex = \iftrue
+\ifpTeX = \iftrue
+\ifuptex = \iftrue
+\ifupTeX = \iftrue
 \ifptexng = \iffalse
 \ifpTeXng = \iffalse
 \ifvtex = \iffalse

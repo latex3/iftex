@@ -2,8 +2,8 @@ This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 \ifetex = \iftrue
 \ifeTeX = \iftrue
-\ifpdftex = \iftrue
-\ifPDFTeX = \iftrue
+\ifpdftex = \iffalse
+\ifPDFTeX = \iffalse
 \ifxetex = \iffalse
 \ifXeTeX = \iffalse
 \ifluatex = \iffalse
@@ -18,7 +18,7 @@ Don't change this file in any respect.
 \ifpTeXng = \iffalse
 \ifvtex = \iffalse
 \ifVTeX = \iffalse
-\ifalephtex = \iffalse
-\ifAlephTeX = \iffalse
+\ifalephtex = \iftrue
+\ifAlephTeX = \iftrue
 \iftutex = \iffalse
 \ifTUTeX = \iffalse

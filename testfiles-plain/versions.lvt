@@ -1,0 +1,73 @@
+% plain tex test of a \ifdim testable version string
+
+\ifx\numexpr\undefined
+\def\START{\immediate\write-1{START-TEST-LOG}}
+\let\zzend\end
+\def\end{\immediate\write-1{END-TEST-LOG}\zzend}
+\else
+\input regression-test
+\fi
+
+
+% test file loadable in initex
+
+\catcode123=1
+\catcode125=2
+\catcode64 = 11
+\catcode35 =6
+
+\ifx\directlua\undefined\else
+  \directlua{
+    tex.enableprimitives("", {"detokenize","dimexpr","luatexversion","luatexrevision"})
+  }
+\fi
+
+\input ./iftex.sty
+
+\START
+
+\ifetex
+\immediate\write20{etex: [\the\eTeXversion\eTeXrevision pt]}
+\fi
+
+\ifpdftex
+\immediate\write20{pdftex: [\the\dimexpr(\pdftexversion pt)/100\relax] (.\pdftexrevision)}
+\fi
+
+\ifxetex
+\immediate\write20{xetex: [\the\XeTeXversion\XeTeXrevision pt]}
+\fi
+
+\ifluatex
+\immediate\write20{luatex: [\the\dimexpr(\luatexversion pt)/100\relax] (.\luatexrevision)}
+\fi
+
+\ifluahbtex
+% as for luatex
+\immediate\write20{luahbtex: [\the\dimexpr(\luatexversion pt)/100\relax] (.\luatexrevision)}
+\fi
+
+\ifptex
+\immediate\write20{ptex: [\the\ptexversion.\the\ptexminorversion pt] (\ptexrevision)}
+\fi
+
+\ifuptex
+\immediate\write20{uptex: [\the\uptexversion\uptexrevision pt]}
+\fi
+
+\ifptexng
+\immediate\write20{ptex-ng: [99pt] (?)}
+\fi
+
+\ifvtex
+\immediate\write20{vtex: [\the\VTeXversion pt]}
+\fi
+
+\ifalephtex
+% Aleph versions given as 0.0 (.0) ????
+\immediate\write20{Omega: [\the\Omegaversion.\the\Omegaminorversion pt] (\Omegarevision)}
+\immediate\write20{Aleph: [\the\Alephversion.\the\Alephminorversion pt] (\Alephrevision)}
+\fi
+
+
+\end

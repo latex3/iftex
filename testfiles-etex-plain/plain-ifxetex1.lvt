@@ -1,7 +1,9 @@
 % plain tex ifxetex compatibility
+\input regression-test
 
 \input ifxetex.sty
 
+\START
 \ifxetex
 \immediate\write20{XeTeX}
 \else
