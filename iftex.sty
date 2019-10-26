@@ -16,21 +16,30 @@
 %% ifptex Takayuki YATO
 
 
+
+% Only load once (not needed in LaTeX, but does no harm
 \csname IFTEX\string @loaded\endcsname
 \expandafter\let\csname IFTEX\string @loaded\endcsname\endinput
 
+% File loadable in initex
+% require { } # with standard catcodes.
+\catcode123=1
+\catcode125=2
+\catcode35=6
 
+
+% ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}
-    [2019/10/24 v1.0a TeX engine tests]
+  \ProvidesPackage{iftex}[2019/10/24 v1.0a TeX engine tests]
 \fi
 
+%Save @ catcode, to restore at end, not needed in LaTeX.
 \expandafter\chardef\csname IFTEX@at@catcode\endcsname\catcode64
 \catcode 64 11
 
-% message format used in several if*tex existing packages
-% Modified here to do a hard stop and not show any error context lines
+% Message format used in several pre-existing if*tex packages
+% Modified here to do a hard stop and not show any error context lines.
 \def\IFTEX@Require#1#2#3{%
   #1\else
       \newlinechar=10\relax
@@ -44,6 +53,8 @@
     #3%
 }
 
+
+% eTeX \protected if available.
 \ifx\protected\@undefined
   \let\IFTEX@protected\relax
 \else
@@ -51,6 +62,7 @@
 \fi
 
 
+% \Require... commands that stop if the wrong engine detected.
 \IFTEX@protected\def\RequireeTeX{\IFTEX@Require\ifetex{eTeX}\fi}
 \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifpdftex{pdfTeX}\fi}
 \IFTEX@protected\def\RequireXeTeX{\IFTEX@Require\ifxetex{XeTeX}\fi}
@@ -69,6 +81,8 @@
 % As a matter of policy over-write any existing \if*tex macro and set
 % by the tests here.
 
+% \csname and \let construct useful for hiding \ifzzz tokens from
+% outer level \if tests.
 \def\IFTEX@let#1#2{%
   \expandafter\let\csname if#1\expandafter\endcsname
   \csname if#2\endcsname}
@@ -106,16 +120,25 @@
 \fi
 \IFTEX@let{LuaTeX}{luatex}
 
-% luahbtex
-% use luaharfbuzz test rather than status.luatex_engine=="luahbtex" for issue #2
+% luahbtex (or luatex + luaharfbuzz)
+% Use luaharfbuzz test rather than status.luatex_engine=="luahbtex"
+% for issue #2.
 \IFTEX@let{luahbtex}{false}
 \ifx\directlua\@undefined
 \else
+
+% make sure \deokenize is available,
+% but avoid defining it if not already defined/
+  \let\IFTEX@temp\detokenize
+  \directlua{tex.enableprimitives("", {"detokenize"})}
+
   \directlua{\detokenize{
    if(pcall(require, 'luaharfbuzz')) then
      tex.print("\\let\\ifluahbtex\\iftrue ")
    end
   }}
+
+  \let\detokenize\IFTEX@temp
 \fi
 \IFTEX@let{LuaHBTeX}{luahbtex}
 

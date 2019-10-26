@@ -1,20 +1,9 @@
-% test file loadable in initex
 
-\catcode123=1
-\catcode125=2
-\catcode64 = 11
-\catcode35 =6
-
-
-\ifx\directlua\undefined\else
-  \directlua{
-    tex.enableprimitives("", {"detokenize"})
-  }
-\fi
-
-\input ./iftex.sty
+\input iftex.sty
 
 
 \RequireLuaTeX
+
+\immediate\write20{This is LuaTeX}
 
 \bye
