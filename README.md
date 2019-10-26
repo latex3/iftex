@@ -8,12 +8,12 @@ different TeX variants.
 For each supported engine, tests are provided of the form
 
  \ifpdftex which is true if PDFTeX is in use and \RequirePDFTeX
- which stops the run with an error messag eif PDFTeX is not being used.
+ which stops the run with an error message if PDFTeX is not being used.
 
 The package (which works with plain TeX as well as LaTeX) has tests
 for:
 
-eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph
+eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph.
 
 
 In addition, an \ifpdf test is provided to test the PDF or DVI output
