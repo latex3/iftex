@@ -1,0 +1,8 @@
+\input regression-test
+\RequirePackage{iftex}
+
+\START
+
+\typeout{PDF: \ifpdf yes\else no\fi}
+
+\END

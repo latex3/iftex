@@ -14,10 +14,10 @@
 %% iftex 0.2 Persian TeX Group / Vafa Khalighi
 %% ifluatex ifvtex Heiko Oberdiek
 %% ifptex Takayuki YATO
+%% ifpdf Heiko Oberdiek and LaTeX3 Project
 
 
-
-% Only load once (not needed in LaTeX, but does no harm
+% Only load once (not needed in LaTeX, but does no harm).
 \csname IFTEX\string @loaded\endcsname
 \expandafter\let\csname IFTEX\string @loaded\endcsname\endinput
 
@@ -193,5 +193,33 @@
   \IFTEX@let{tutex}{true}
 \fi
 \IFTEX@let{TUTeX}{tutex}
+
+
+
+% Output mode 
+% declare with as if with \newif
+\def\pdftrue{\let\ifpdf\iftrue}
+\def\pdffalse{\let\ifpdf\iffalse}
+\pdffalse
+\ifx\directlua\undefined
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname pdfoutput\endcsname\relax
+\ifvtex
+  \ifnum\OpMode=3 %
+    \pdftrue
+  \fi
+\fi
+\else
+  \ifnum\pdfoutput>0 %
+    \pdftrue
+  \fi
+\fi
+\else
+\directlua{%
+if (tex.outputmode or tex.pdfoutput or 0) > 0 then
+  tex.print('\string\\pdftrue')
+end
+}
+\fi
 
 \catcode64 \IFTEX@at@catcode
