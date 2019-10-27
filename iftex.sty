@@ -35,7 +35,7 @@
 \fi
 
 %Save @ catcode, to restore at end, not needed in LaTeX.
-\expandafter\chardef\csname IFTEX@at@catcode\endcsname\catcode64
+\expandafter\chardef\csname IFTEX\string @atcatcode\endcsname\catcode64
 \catcode 64 11
 
 % Message format used in several pre-existing if*tex packages
@@ -222,4 +222,4 @@ end
 }
 \fi
 
-\catcode64 \IFTEX@at@catcode
+\catcode64 \IFTEX@atcatcode
