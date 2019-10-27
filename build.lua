@@ -3,7 +3,7 @@
 
 module = "iftex"
 
-checkconfigs = {"build","config-plain"}
+checkconfigs = {"build","config-plain","config-etex-plain"}
 checkengines= {"pdftex","luatex","xetex","ptex","uptex"}
 checkruns = 1
 

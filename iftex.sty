@@ -34,7 +34,7 @@
   \ProvidesPackage{iftex}[2019/10/24 v1.0a TeX engine tests]
 \fi
 
-%Save @ catcode, to restore at end, not needed in LaTeX.
+% Save @ catcode, to restore at end, not needed in LaTeX.
 \expandafter\chardef\csname IFTEX\string @atcatcode\endcsname\catcode64
 \catcode 64 11
 
@@ -61,13 +61,18 @@
   \let\IFTEX@protected\protected
 \fi
 
-
 % make sure \detokenize and \protected are available in lualatex,
 % but avoid defining them after the package if not already defined.
 \ifx\directlua\@undefined\else
+  {
+  \catcode34 12 % "
+  \catcode40 12 % (
+  \catcode41 12 % )
+  \catcode44 12 % ,
+  \catcode46 12 % .
   \directlua{tex.enableprimitives("IFTEX@", {"detokenize","protected"})}
+  }
 \fi
-
 
 % \Require... commands that stop if the wrong engine detected.
 \IFTEX@protected\def\RequireeTeX{\IFTEX@Require\ifetex{eTeX}\fi}
