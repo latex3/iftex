@@ -42,12 +42,12 @@
 % Modified here to do a hard stop and not show any error context lines.
 \def\IFTEX@Require#1#2#3{%
   #1\else
-      \newlinechar=10\relax
-      \errorcontextlines=-1\relax
-      \immediate\write20{^^J
-      ********************************************^^J
-      * #2 is required to compile this document.^^J
-      * Sorry!^^J
+      \newlinechar 64\relax
+      \errorcontextlines -1\relax
+      \immediate\write20{@
+      ********************************************@
+      * #2 is required to compile this document.@
+      * Sorry!@
       ********************************************}%
     \batchmode\read -1 to \@tempa
     #3%
