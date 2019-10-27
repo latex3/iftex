@@ -16,16 +16,15 @@ for:
 eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph.
 
 
-In addition, an \ifpdf test is provided to test the PDF or DVI output
-mode. This is essentially the same as the existing test in the ifpdf
-package.
+In addition, an \iftutex test is true for XeTeX and LuaTeX, and
+an \ifpdf test is provided to test the PDF or DVI output mode.
 
 ## Compatibility Packages
 
 In addition to the main iftex.sty package, small wrapper packages are
 provided
 
-ifetex.sty  ifluatex.sty  ifvtex.sty  ifxetex.sty
+ifetex.sty  ifluatex.sty  ifvtex.sty  ifxetex.sty ifpdf.sty
 
 These include iftex and in some cases emulate some additional
 commands to allow these packages to replace the original packages in TeX
