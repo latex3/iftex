@@ -54,18 +54,19 @@
 }
 
 
+% make sure \detokenize and \protected are available in lualatex,
+% but avoid defining them after the package if not already defined.
+\ifx\directlua\@undefined\else
+  \let\IFTEX@detokenize\detokenize
+  \let\IFTEX@protected\protected
+  \directlua{tex\string .enableprimitives\string (\string"\string  ", {\string "detokenize\string ",\string "protected\string "}\string )}
+\fi
+
 % eTeX \protected if available.
 \ifx\protected\@undefined
   \let\IFTEX@protected\relax
 \else
   \let\IFTEX@protected\protected
-\fi
-
-
-% make sure \detokenize and \protected are available in lualatex,
-% but avoid defining them after the package if not already defined.
-\ifx\directlua\@undefined\else
-  \directlua{tex.enableprimitives("IFTEX@", {"detokenize","protected"})}
 \fi
 
 
@@ -133,7 +134,7 @@
 \IFTEX@let{luahbtex}{false}
 \ifx\directlua\@undefined
 \else
-  \directlua{\IFTEX@detokenize{
+  \directlua{\detokenize{
    if(pcall(require, 'luaharfbuzz')) then
      tex.print("\\let\\ifluahbtex\\iftrue ")
    end
@@ -215,7 +216,7 @@
   \fi
 \fi
 \else
-\directlua{\IFTEX@detokenize{
+\directlua{\detokenize{
 if (tex.outputmode or tex.pdfoutput or 0) > 0 then
   tex.print('\\pdftrue')
 end
@@ -223,4 +224,8 @@ end
 \fi
 
 % restore things
+\ifx\directlua\@undefined\else
+  \let\detokenize\IFTEX@detokenize
+  \let\protected\IFTEX@protected
+\fi
 \catcode64 \IFTEX@atcatcode

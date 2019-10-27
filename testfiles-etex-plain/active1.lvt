@@ -1,0 +1,15 @@
+\input regression-test
+
+\catcode`\"=13
+\def"{oops}
+
+\START
+\input iftex.sty
+
+\ifluatex
+\TYPE{yes}
+\else
+\TYPE{no}
+\fi
+
+\END
