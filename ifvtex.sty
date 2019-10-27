@@ -16,14 +16,14 @@
   \RequirePackage{iftex}
 \fi
 
+
+\IFTEX@let{vtexdvi}{false}
+\IFTEX@let{vtexpdf}{false}
+\IFTEX@let{vtexps}{false}
+\IFTEX@let{vtexhtml}{false}
+\IFTEX@let{vtexgex}{false}
+
 \ifvtex
-
-  \IFTEX@let{vtexdvi}{false}
-  \IFTEX@let{vtexpdf}{false}
-  \IFTEX@let{vtexps}{false}
-  \IFTEX@let{vtexhtml}{false}
-  \IFTEX@let{vtexgex}{false}
-
   \ifcase\OpMode\relax
     \IFTEX@let{vtexdvi}{true}
   \or % 1
