@@ -63,16 +63,16 @@
 
 % make sure \detokenize and \protected are available in lualatex,
 % but avoid defining them after the package if not already defined.
-\ifx\directlua\@undefined\else
   {
   \catcode34 12 % "
   \catcode40 12 % (
   \catcode41 12 % )
   \catcode44 12 % ,
   \catcode46 12 % .
-  \directlua{tex.enableprimitives("IFTEX@", {"detokenize","protected"})}
+  \ifx\directlua\@undefined\else
+    \directlua{tex.enableprimitives("IFTEX@", {"detokenize","protected"})}
+  \fi
   }
-\fi
 
 % \Require... commands that stop if the wrong engine detected.
 \IFTEX@protected\def\RequireeTeX{\IFTEX@Require\ifetex{eTeX}\fi}
