@@ -16,7 +16,6 @@
 %% ifptex Takayuki YATO
 %% ifpdf Heiko Oberdiek and LaTeX3 Project
 
-
 % Only load once (not needed in LaTeX, but does no harm).
 \csname IFTEX\string @loaded\endcsname
 \expandafter\let\csname IFTEX\string @loaded\endcsname\endinput
@@ -31,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2019/10/24 v1.0a TeX engine tests]
+  \ProvidesPackage{iftex}[2019/11/04 v1.0b TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -225,6 +224,16 @@ if (tex.outputmode or tex.pdfoutput or 0) > 0 then
   tex.print('\\pdftrue')
 end
 }}
+\fi
+
+
+% special compat for scrbase
+\ifx\scr@ifpdftex\@undefined\else
+ \let\ifpdftex\scr@ifpdftex
+ \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifpdftex{pdfTeX}\fi}
+\fi
+\ifx\scr@ifVTeX\@undefined\else
+ \let\ifVTeX\scr@ifVTeX
 \fi
 
 % restore things
