@@ -230,7 +230,7 @@ end
 % special compat for scrbase
 \ifx\scr@ifpdftex\@undefined\else
  \let\ifpdftex\scr@ifpdftex
- \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifpdftex{pdfTeX}\fi}
+ \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
 \fi
 \ifx\scr@ifVTeX\@undefined\else
  \let\ifVTeX\scr@ifVTeX
