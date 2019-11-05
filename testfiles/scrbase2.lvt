@@ -1,0 +1,15 @@
+\documentclass{article}
+\usepackage[internalonly=/ifpdftex]{scrbase}
+\usepackage{iftex}
+\show\ifpdftex
+\input{regression-test}
+
+\START
+\typeout{\meaning\ifpdftex}
+\ifpdftex
+\typeout{pdftex}
+\else
+\typeout{not pdftex}
+\fi
+
+\END

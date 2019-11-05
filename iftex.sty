@@ -16,7 +16,6 @@
 %% ifptex Takayuki YATO
 %% ifpdf Heiko Oberdiek and LaTeX3 Project
 
-
 % Only load once (not needed in LaTeX, but does no harm).
 \csname IFTEX\string @loaded\endcsname
 \expandafter\let\csname IFTEX\string @loaded\endcsname\endinput
@@ -31,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2019/10/24 v1.0a TeX engine tests]
+  \ProvidesPackage{iftex}[2019/11/04 v1.0b TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -108,6 +107,7 @@
 \IFTEX@let{eTeX}{etex}
 
 % pdftex (including in dvi mode)
+\IFTEX@let{IFTEX@savedpdftex}{pdftex}
 \ifx\pdftexversion\@undefined
   \IFTEX@let{pdftex}{false}
 \else
@@ -173,6 +173,7 @@
 \IFTEX@let{pTeXng}{ptexng}
 
 % vtex
+\IFTEX@let{IFTEX@savedVTeX}{VTeX}
 \ifx\VTeXversion\@undefined
   \IFTEX@let{vtex}{false}
 \else
@@ -226,6 +227,16 @@ if (tex.outputmode or tex.pdfoutput or 0) > 0 then
 end
 }}
 \fi
+
+
+% special compat for scrbase
+\ifx\scr@ifpdftex\@undefined\else\ifx\ifIFTEX@savedpdftex\relax\else
+ \IFTEX@let{pdftex}{IFTEX@savedpdftex}
+ \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
+\fi\fi
+\ifx\scr@ifVTeX\@undefined\else\ifx\ifIFTEX@savedVTeX\relax\else
+ \IFTEX@let{VTeX}{IFTEX@savedVTeX}
+\fi\fi
 
 % restore things
 \catcode64 \IFTEX@atcatcode
