@@ -53,6 +53,17 @@
 }
 
 
+% special compat for scrbase
+\ifx\scr@ifpdftex\ifpdftex
+ \AtEndOfPackage{%
+ \expandafter\let\csname ifpdftex\endcsname\scr@ifpdftex
+ \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}}
+\fi
+\ifx\scr@ifVTeX\ifVTeX
+ \AtEndOfPackage{%
+ \expandafter\let\csname ifVTeX\endcsname\scr@ifVTeX}
+\fi
+
 % eTeX \protected if available.
 \ifx\protected\@undefined
   \let\IFTEX@protected\relax
@@ -227,14 +238,6 @@ end
 \fi
 
 
-% special compat for scrbase
-\ifx\scr@ifpdftex\@undefined\else
- \expandafter\let\csname ifpdftex\endcsname\scr@ifpdftex
- \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
-\fi
-\ifx\scr@ifVTeX\@undefined\else
- \expandafter\let\csname ifVTeX\endcsname\scr@ifVTeX
-\fi
 
 % restore things
 \catcode64 \IFTEX@atcatcode
