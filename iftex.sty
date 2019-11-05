@@ -229,11 +229,11 @@ end
 
 % special compat for scrbase
 \ifx\scr@ifpdftex\@undefined\else
- \let\ifpdftex\scr@ifpdftex
+ \expandafter\let\csname ifpdftex\endcsname\scr@ifpdftex
  \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
 \fi
 \ifx\scr@ifVTeX\@undefined\else
- \let\ifVTeX\scr@ifVTeX
+ \expandafter\let\csname ifVTeX\endcsname\scr@ifVTeX
 \fi
 
 % restore things
