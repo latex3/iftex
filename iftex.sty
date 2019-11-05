@@ -53,17 +53,6 @@
 }
 
 
-% special compat for scrbase
-\ifx\scr@ifpdftex\ifpdftex
- \AtEndOfPackage{%
- \expandafter\let\csname ifpdftex\endcsname\scr@ifpdftex
- \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}}
-\fi
-\ifx\scr@ifVTeX\ifVTeX
- \AtEndOfPackage{%
- \expandafter\let\csname ifVTeX\endcsname\scr@ifVTeX}
-\fi
-
 % eTeX \protected if available.
 \ifx\protected\@undefined
   \let\IFTEX@protected\relax
@@ -118,6 +107,7 @@
 \IFTEX@let{eTeX}{etex}
 
 % pdftex (including in dvi mode)
+\IFTEX@let{IFTEX@savedpdftex}{pdftex}
 \ifx\pdftexversion\@undefined
   \IFTEX@let{pdftex}{false}
 \else
@@ -183,6 +173,7 @@
 \IFTEX@let{pTeXng}{ptexng}
 
 % vtex
+\IFTEX@let{IFTEX@savedVTeX}{VTeX}
 \ifx\VTeXversion\@undefined
   \IFTEX@let{vtex}{false}
 \else
@@ -238,6 +229,14 @@ end
 \fi
 
 
+% special compat for scrbase
+\ifx\scr@ifpdftex\@undefined\else\ifx\ifIFTEX@savedpdftex\relax\else
+ \IFTEX@let{pdftex}{IFTEX@savedpdftex}
+ \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
+\fi\fi
+\ifx\scr@ifVTeX\@undefined\else\ifx\ifIFTEX@savedVTeX\relax\else
+ \IFTEX@let{VTeX}{IFTEX@savedVTeX}
+\fi\fi
 
 % restore things
 \catcode64 \IFTEX@atcatcode

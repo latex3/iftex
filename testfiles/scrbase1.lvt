@@ -1,0 +1,13 @@
+\documentclass{scrartcl}
+\usepackage{iftex}
+
+\input{regression-test}
+
+\START
+\ifpdftex{
+\typeout{pdftex}
+}{
+\typeout{not pdftex}
+}
+
+\END
