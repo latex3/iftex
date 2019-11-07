@@ -1,0 +1,18 @@
+
+\expandafter\ifx\csname VTeXversion\endcsname\relax \fi
+\expandafter\ifx\csname XeTeXrevision\endcsname\relax \fi
+\expandafter\ifx\csname kanjiskip\endcsname\relax \fi
+
+\RequirePackage{iftex}
+
+\input{regression-test}
+
+\START
+
+\TYPE{[%
+\ifvtex  V\fi
+\ifxetex E\fi
+\ifptex   P\fi
+]}
+\END
+
