@@ -30,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2019/11/04 v1.0b TeX engine tests]
+  \ProvidesPackage{iftex}[2019/11/07 v1.0c TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -54,7 +54,7 @@
 
 
 % eTeX \protected if available.
-\ifx\protected\@undefined
+\ifnum\ifx\protected\@undefined 1 \else\ifx\protected\relax 1 \else 0\fi\fi=1 %
   \let\IFTEX@protected\relax
 \else
   \let\IFTEX@protected\protected
@@ -68,7 +68,7 @@
   \catcode41 12 % )
   \catcode44 12 % ,
   \catcode46 12 % .
-  \ifx\directlua\@undefined\else
+  \ifnum\ifx\directlua\@undefined 1\else\ifx\directlua\relax 1\else 0\fi\fi=1 \else
     \directlua{tex.enableprimitives("IFTEX@", {"detokenize","protected"})}
   \fi
   }
@@ -99,7 +99,7 @@
   \csname if#2\endcsname}
 
 % etex (should always be true in latex based formats)
-\ifx\numexpr\@undefined
+\ifnum\ifx\numexpr\@undefined 1\else\ifx\numexpr\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{etex}{false}
 \else
   \IFTEX@let{etex}{true}
@@ -108,7 +108,7 @@
 
 % pdftex (including in dvi mode)
 \IFTEX@let{IFTEX@savedpdftex}{pdftex}
-\ifx\pdftexversion\@undefined
+\ifnum\ifx\pdftexversion\@undefined 1\else\ifx\pdftexversion\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{pdftex}{false}
 \else
   \IFTEX@let{pdftex}{true}
@@ -116,7 +116,7 @@
 \IFTEX@let{PDFTeX}{pdftex}
 
 % xetex
-\ifx\XeTeXrevision\@undefined
+\ifnum\ifx\XeTeXrevision\@undefined 1\else\ifx\XeTeXrevision\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{xetex}{false}
 \else
   \IFTEX@let{xetex}{true}
@@ -125,18 +125,19 @@
 
 
 % luatex (including luahbtex)
-\ifx\directlua\@undefined
+\ifnum\ifx\directlua\@undefined 1\else\ifx\directlua\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{luatex}{false}
 \else
   \IFTEX@let{luatex}{true}
 \fi
 \IFTEX@let{LuaTeX}{luatex}
 
+
 % luahbtex (or luatex + luaharfbuzz)
 % Use luaharfbuzz test rather than status.luatex_engine=="luahbtex"
 % for issue #2.
 \IFTEX@let{luahbtex}{false}
-\ifx\directlua\@undefined
+\ifnum\ifx\directlua\@undefined 1\else\ifx\directlua\relax 1\else 0\fi\fi=1 %
 \else
   \directlua{\IFTEX@detokenize{
    if(pcall(require, 'luaharfbuzz')) then
@@ -149,7 +150,7 @@
 
 
 % ptex (including all variants)
-\ifx\kanjiskip\@undefined
+\ifnum\ifx\kanjiskip\@undefined 1\else\ifx\kanjiskip\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{ptex}{false}
 \else
   \IFTEX@let{ptex}{true}
@@ -165,7 +166,7 @@
 \IFTEX@let{upTeX}{uptex}
 
 % ptex-ng
-\ifx\ngbanner\@undefined
+\ifnum\ifx\ngbanner\@undefined 1\else\ifx\ngbanner\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{ptexng}{false}
 \else
   \IFTEX@let{ptexng}{true}
@@ -174,7 +175,7 @@
 
 % vtex
 \IFTEX@let{IFTEX@savedVTeX}{VTeX}
-\ifx\VTeXversion\@undefined
+\ifnum\ifx\VTeXversion\@undefined 1\else\ifx\VTeXversion\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{vtex}{false}
 \else
   \IFTEX@let{vtex}{true}
@@ -184,7 +185,7 @@
 % aleph
 \IFTEX@let{alephtex}{false}
 \ifptex\else
-\ifx\omathchardef\@undefined
+\ifnum\ifx\omathchardef\@undefined 1\else\ifx\omathchardef\relax 1\else 0\fi\fi=1 %
 \else
   \IFTEX@let{alephtex}{true}
 \fi
@@ -193,7 +194,7 @@
 
 
 % tutex (LuaTeX or XeTeX)
-\ifx\Umathchardef\@undefined
+\ifnum\ifx\Umathchardef\@undefined 1\else\ifx\Umathchardef\relax 1\else 0\fi\fi=1 %
   \IFTEX@let{tutex}{false}
 \else
   \IFTEX@let{tutex}{true}
@@ -201,13 +202,18 @@
 \IFTEX@let{TUTeX}{tutex}
 
 
-
 % Output mode 
 % declare with as if with \newif
 \def\pdftrue{\let\ifpdf\iftrue}
 \def\pdffalse{\let\ifpdf\iffalse}
 \pdffalse
-\ifx\directlua\undefined
+\ifluatex
+\directlua{\IFTEX@detokenize{
+if (tex.outputmode or tex.pdfoutput or 0) > 0 then
+  tex.print('\\pdftrue')
+end
+}}
+\else
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname pdfoutput\endcsname\relax
 \ifvtex
@@ -220,12 +226,6 @@
     \pdftrue
   \fi
 \fi
-\else
-\directlua{\IFTEX@detokenize{
-if (tex.outputmode or tex.pdfoutput or 0) > 0 then
-  tex.print('\\pdftrue')
-end
-}}
 \fi
 
 
