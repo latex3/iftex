@@ -185,14 +185,15 @@ need fine control over the Japanese \TeX\ system in use.
 The \textsf{scrbase} package (which is automatically included in the
 popular \textsf{KOMA-Script} classes) by default defines
 \verb|\ifpdftex| and \verb|\ifVTeX| with a different syntax.  If you
-use the option \verb|internalonly| then it will not define these and
-the definitions as described here will take effect. This is
-recommended and will not affect any \textsf{scrbase} package code as
-internally \textsf{scrbase} uses private versions of those
-commands prefixed with \verb|\scr@|.  However this package detects if
-the \textsf{scrbase} definitions are in effect and if so does not
-redefine them, for compatibility with existing documents. The
-\textsf{iftex} versions will still be available under the names
-\verb|\ifPDFTeX| and \verb|\ifvtex|.
+use the \textsf{scrbase} option \verb|internalonly| then
+\textsf{scrbase} will not define these and the definitions as
+described here will take effect. This is recommended and will not
+affect any \textsf{scrbase} package code as internally
+\textsf{scrbase} uses private versions of those commands prefixed with
+\verb|\scr@|.  However this package detects if the \textsf{scrbase}
+definitions are in effect and if so does not redefine them, for
+compatibility with existing documents. The \textsf{iftex} versions
+will still be available under the names \verb|\ifPDFTeX| and
+\verb|\ifvtex|.
 
 \end{document}
