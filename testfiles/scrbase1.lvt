@@ -4,7 +4,11 @@
 \input{regression-test}
 
 \START
-\ifpdftex{
+% this test originally tested the two argument version of \ifpdftex
+% but that is no longer defined by scrbase.
+\makeatletter
+\let\ifnotundefined\Ifnotundefined
+\scr@ifpdftex{
 \typeout{pdftex}
 }{
 \typeout{not pdftex}
