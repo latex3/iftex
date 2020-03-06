@@ -1,4 +1,4 @@
-%% iftex TeX engine tests
+% iftex TeX engine tests
 
 %% LaTeX3 Project
 %%
@@ -30,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2019/11/07 v1.0c TeX engine tests]
+  \ProvidesPackage{iftex}[2020/03/06 v1.0d TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -109,7 +109,6 @@
 \IFTEX@let{eTeX}{etex}
 
 % pdftex (including in dvi mode)
-\IFTEX@let{IFTEX@savedpdftex}{pdftex}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname pdftexversion\endcsname\relax
   \IFTEX@let{pdftex}{false}
@@ -182,7 +181,6 @@
 \IFTEX@let{pTeXng}{ptexng}
 
 % vtex
-\IFTEX@let{IFTEX@savedVTeX}{VTeX}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname VTeXversion\endcsname\relax
   \IFTEX@let{vtex}{false}
@@ -238,15 +236,6 @@ end
 \fi
 \fi
 
-
-% special compat for scrbase
-\ifx\scr@ifpdftex\@undefined\else\ifx\ifIFTEX@savedpdftex\relax\else
- \IFTEX@let{pdftex}{IFTEX@savedpdftex}
- \IFTEX@protected\def\RequirePDFTeX{\IFTEX@Require\ifPDFTeX{pdfTeX}\fi}
-\fi\fi
-\ifx\scr@ifVTeX\@undefined\else\ifx\ifIFTEX@savedVTeX\relax\else
- \IFTEX@let{VTeX}{IFTEX@savedVTeX}
-\fi\fi
 
 % restore things
 \catcode64 \IFTEX@atcatcode
