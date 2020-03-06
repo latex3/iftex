@@ -1,0 +1,6 @@
+\input regression-test
+% should not give errors on mismatched \fi
+\START
+\newif \ifpdftex
+\input iftex.sty
+\END
