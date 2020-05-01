@@ -88,7 +88,9 @@
 \IFTEX@protected\def\RequireAlephTeX{\IFTEX@Require\ifalephtex{Aleph}\fi}
 % tutex == has \Umathchardef == XeTeX or Lua(HB)TeX currently
 \IFTEX@protected\def\RequireTUTeX{\IFTEX@Require\iftutex{LuaTeX or XeTeX}\fi}
-
+\IFTEX@protected\def\RequireTexpadTeX{\IFTEX@Require\iftexpadtex{TexpadTeX}\fi}
+\IFTEX@protected\def\RequireTexpadTeXUnicode{\IFTEX@Require\iftexpadtexunicode{TexpadTeXUnicode}\fi}
+\IFTEX@protected\def\RequireTexpadTeXEightBit{\IFTEX@Require\iftexpadtexeightbit{TexpadTeXEightBit}\fi}
 
 % As a matter of policy over-write any existing \if*tex macro and set
 % by the tests here.
@@ -210,7 +212,27 @@
 \fi
 \IFTEX@let{TUTeX}{tutex}
 
-% Output mode 
+% texpadtex
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname TexpadTeXMode\endcsname\relax
+  \IFTEX@let{texpadtex}{false}
+  \IFTEX@let{texpadtexunicode}{false}
+  \IFTEX@let{texpadtexeightbit}{false}
+\else
+  \IFTEX@let{texpadtex}{true}
+  \ifcase\TexpadTeXMode\relax
+    \IFTEX@let{texpadtexunicode}{false}
+    \IFTEX@let{texpadtexeightbit}{true}
+  \or
+    \IFTEX@let{texpadtexunicode}{true}
+    \IFTEX@let{texpadtexeightbit}{false}
+  \fi
+\fi
+\IFTEX@let{TexpadTeX}{texpadtex}
+\IFTEX@let{TexpadTeXUnicode}{texpadtexunicode}
+\IFTEX@let{TexpadTeXEightBit}{texpadtexeightbit}
+
+% Output mode
 % declare as if with \newif
 \def\pdftrue{\let\ifpdf\iftrue}
 \def\pdffalse{\let\ifpdf\iffalse}
@@ -226,6 +248,10 @@ end
 \expandafter\ifx\csname pdfoutput\endcsname\relax
 \ifvtex
   \ifnum\OpMode=3 %
+    \pdftrue
+  \fi
+\else
+  \iftexpadtex
     \pdftrue
   \fi
 \fi

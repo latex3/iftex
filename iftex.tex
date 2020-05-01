@@ -119,6 +119,27 @@ true for Lua\TeX\ and Xe\TeX, allowing constructs such as
   \usepackage{newtxtext,newtxmath}
 \fi
 \end{verbatim}
+\item[\cs{iftexpadtex}, \cs{ifTexpadTeX}]
+True if Texpad\TeX\ is in use. Please note that Texpad\TeX\ can run in two
+modes, one which uses Unicode and native fonts internally (similar to
+Xe\TeX\ and Lua\TeX), and one which uses 8-bit codepages internally (similar to
+PDF\TeX). These modes can be further distinguished with
+\cs{iftexpadtexunicode} and \cs{iftexpadtexeightbit} respectively, allowing for
+constructs such as
+\begin{verbatim}
+\iftexpadtexunicode
+  \usepackage{fontspec}
+  \setmainfont{Times}
+\else
+  \usepackage{times}
+\fi
+\end{verbatim}
+\begin{description}
+\item[\cs{iftexpadtexunicode}, \cs{ifTexpadTeXUnicode}]
+True if Texpad\TeX\ is running in Unicode mode.
+\item[\cs{iftexpadtexeightbit}, \cs{ifTexpadTeXEightBit}]
+True if Texpad\TeX\ is running in 8-bit mode.
+\end{description}
 
 \end{description}
 
@@ -139,6 +160,9 @@ with a suitable engine, and stops with an error message if not.
 \item[\cs{RequireVTeX}]
 \item[\cs{RequireAlephTeX}]
 \item[\cs{RequireTUTeX}]
+\item[\cs{RequireTexpadTeX}]
+\item[\cs{RequireTexpadTeXUnicode}]
+\item[\cs{RequireTexpadTeXEightBit}]
 \end{description}
 
 
