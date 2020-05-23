@@ -30,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2020/03/06 v1.0d TeX engine tests]
+  \ProvidesPackage{iftex}[2020/05/23 v1.0e TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -208,7 +208,6 @@
 \else
   \IFTEX@let{tutex}{true}
 \fi
-\IFTEX@let{TUTeX}{tutex}
 
 % texpadtex
 \begingroup\expandafter\expandafter\expandafter\endgroup
@@ -223,6 +222,8 @@
   \fi
 \fi
 \IFTEX@let{TexpadTeX}{texpadtex}
+\IFTEX@let{TUTeX}{tutex}
+
 
 % Output mode
 % declare as if with \newif
