@@ -22,7 +22,7 @@
 
 \section{Introduction}
 This original \textsf{iftex} was written as part of the \textsf{bidi}
-collection (by the Persian TeX Group / Vafa Khalighi) 
+collection (by the Persian TeX Group / Vafa Khalighi)
 and provided checks for whether a document was being
 processed with PDF\TeX, or Xe\TeX, or Lua\TeX. This version recodes
 the package and incorporates similar tests from the \textsf{ifetex}
@@ -33,7 +33,7 @@ Yato.
 
 For each \TeX\ variant engine supported two commands are provided:
 \begin{itemize}
-\item 
+\item
  a conditional, \verb|\iffootex| that is true if the \textsf(footex)
 engine (or a compatible extension) is being used.
 
@@ -119,6 +119,11 @@ true for Lua\TeX\ and Xe\TeX, allowing constructs such as
   \usepackage{newtxtext,newtxmath}
 \fi
 \end{verbatim}
+\item[\cs{iftexpadtex}, \cs{ifTexpadTeX}]
+True if Texpad\TeX\ is in use. Please note that Texpad\TeX\ can run in two
+modes, one which uses Unicode and native fonts internally (similar to
+Xe\TeX\ and Lua\TeX), and one which uses 8-bit codepages internally (similar to
+PDF\TeX). This can be determined using \cs{iftutex}.
 
 \end{description}
 
@@ -139,6 +144,7 @@ with a suitable engine, and stops with an error message if not.
 \item[\cs{RequireVTeX}]
 \item[\cs{RequireAlephTeX}]
 \item[\cs{RequireTUTeX}]
+\item[\cs{RequireTexpadTeX}]
 \end{description}
 
 
