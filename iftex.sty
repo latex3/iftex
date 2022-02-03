@@ -90,8 +90,8 @@
 \IFTEX@protected\def\RequireTUTeX{\IFTEX@Require\iftutex{LuaTeX or XeTeX}\fi}
 % TeXpad TeX
 \IFTEX@protected\def\RequireTexpadTeX{\IFTEX@Require\iftexpadtex{TexpadTeX}\fi}
-% HiTeX
-\IFTEX@protected\def\RequireHiTeX{\IFTEX@Require\ifhitex{HiTeX}\fi}
+% HiTeX/HINT
+\IFTEX@protected\def\RequireHINT{\IFTEX@Require\ifhint{HINT}\fi}
 
 % As a matter of policy over-write any existing \if*tex macro and set
 % by the tests here.
@@ -231,11 +231,11 @@
 % HiTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname HINTversion\endcsname\relax
-  \IFTEX@let{hitex}{false}
+  \IFTEX@let{hint}{false}
 \else
-  \IFTEX@let{hitex}{true}
+  \IFTEX@let{hint}{true}
 \fi
-\IFTEX@let{HiTeX}{hitex}
+\IFTEX@let{HINT}{hinnt}
 
 
 % Output mode
