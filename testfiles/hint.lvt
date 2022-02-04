@@ -1,0 +1,6 @@
+\RequirePackage{ifxetex}
+\input regression-test
+\START
+\RequireHINT
+
+\END
