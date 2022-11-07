@@ -14,7 +14,7 @@ The package (which works with plain TeX as well as LaTeX) has tests
 for:
 
 eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph,
-TexpadTeX, HiTeX.
+TexpadTeX, HiTeX, LuaMetaTeX.
 
 
 In addition, an \iftutex test is true for XeTeX and LuaTeX, and
