@@ -30,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2022/02/03 v1.0f TeX engine tests]
+  \ProvidesPackage{iftex}[2024/12/12 v1.0g TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -93,6 +93,8 @@
 \IFTEX@protected\def\RequireTexpadTeX{\IFTEX@Require\iftexpadtex{TexpadTeX}\fi}
 % HiTeX/HINT
 \IFTEX@protected\def\RequireHINT{\IFTEX@Require\ifhint{HINT}\fi}
+% Prote
+\IFTEX@protected\def\RequireProte{\IFTEX@Require\ifprote{Prote}\fi}
 
 % As a matter of policy over-write any existing \if*tex macro and set
 % by the tests here.
@@ -252,6 +254,15 @@
 \fi
 \IFTEX@let{HINT}{hint}
 
+% Prote
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname Proteversion\endcsname\relax
+  \IFTEX@let{prote}{false}
+\else
+  \IFTEX@let{prote}{true}
+\fi
+\IFTEX@let{Prote}{prote}
+ 
 
 % Output mode
 % declare as if with \newif

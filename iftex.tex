@@ -129,6 +129,10 @@ Xe\TeX\ and Lua\TeX), and one which uses 8-bit codepages internally (similar to
 PDF\TeX). This can be determined using \cs{iftutex}.
 \item[\cs{ifhint}, \cs{ifHINT}]
 True if Hi\TeX\ (HINT output format) is in use.
+\item[\cs{ifprote}, \cs{ifProte}]
+True if a Prote engine is in use. (This means it has \TeX\
+primitives, e\TeX\ primitives, and the additional primitives required
+by \LaTeX.)
 \end{description}
 
 \section{Requiring specific engines}
@@ -151,6 +155,7 @@ with a suitable engine, and stops with an error message if not.
 \item[\cs{RequireTUTeX}]
 \item[\cs{RequireTexpadTeX}]
 \item[\cs{RequireHINT}]
+\item[\cs{RequireProte}]
 \end{description}
 
 
