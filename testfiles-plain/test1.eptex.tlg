@@ -12,8 +12,8 @@ Don't change this file in any respect.
 \ifLuaHBTeX = \iffalse
 \ifptex = \iftrue
 \ifpTeX = \iftrue
-\ifuptex = \iffalse
-\ifupTeX = \iffalse
+\ifuptex = \iftrue
+\ifupTeX = \iftrue
 \ifptexng = \iffalse
 \ifpTeXng = \iffalse
 \ifvtex = \iffalse
