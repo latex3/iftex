@@ -10,6 +10,8 @@ Don't change this file in any respect.
 \ifLuaTeX = \iffalse
 \ifluahbtex = \iffalse
 \ifLuaHBTeX = \iffalse
+\ifluametatex = \iffalse
+\ifLuaMetaTeX = \iffalse
 \ifptex = \iffalse
 \ifpTeX = \iffalse
 \ifuptex = \iffalse
@@ -22,3 +24,7 @@ Don't change this file in any respect.
 \ifAlephTeX = \iffalse
 \iftutex = \iffalse
 \ifTUTeX = \iffalse
+\ifhint = \iffalse
+\ifHINT = \iffalse
+\ifprote = \iffalse
+\ifProte = \iffalse

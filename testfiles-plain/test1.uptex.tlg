@@ -8,6 +8,8 @@
 \ifLuaTeX = \iffalse
 \ifluahbtex = \iffalse
 \ifLuaHBTeX = \iffalse
+\ifluametatex = \iffalse
+\ifLuaMetaTeX = \iffalse
 \ifptex = \iftrue
 \ifpTeX = \iftrue
 \ifuptex = \iftrue
@@ -20,3 +22,7 @@
 \ifAlephTeX = \iffalse
 \iftutex = \iffalse
 \ifTUTeX = \iffalse
+\ifhint = \iffalse
+\ifHINT = \iffalse
+\ifprote = \iffalse
+\ifProte = \iffalse
