@@ -30,7 +30,7 @@
 % ProvidesPackage declaration in LaTeX
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname ProvidesPackage\endcsname\relax\else
-  \ProvidesPackage{iftex}[2024/12/12 v1.0g TeX engine tests]
+  \ProvidesPackage{iftex}[2025/07/24 v1.0h TeX engine tests]
 \fi
 
 % Save @ catcode, to restore at end, not needed in LaTeX.
@@ -139,6 +139,8 @@
   \IFTEX@let{luatex}{false}
 \else
   \IFTEX@let{luatex}{true}
+  \IFTEX@let{pdftex}{false}
+  \IFTEX@let{PDFTeX}{false}
 \fi
 \IFTEX@let{LuaTeX}{luatex}
 
