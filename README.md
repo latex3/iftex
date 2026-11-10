@@ -17,7 +17,7 @@ eTeX, PDFTeX, XeTeX, LuaTeX, LuaHBTeX, pTeX, upTeX, pTeX-ng, VTeX, Aleph,
 TexpadTeX, HiTeX, LuaMetaTeX.
 
 In addition, an `\iftutex` test is `true` for XeTeX and LuaTeX, and
-an \ifpdf test is provided to test the PDF or DVI output mode.
+an `\ifpdf` test is provided to test the PDF or DVI output mode.
 
 ## Compatibility Packages
 
